@@ -15,7 +15,7 @@ RUN mv elasticsearch-1.4.4 elasticsearch
 RUN cd elasticsearch && bin/plugin -install elasticsearch/elasticsearch-cloud-aws/2.4.1
 
 ENV ES_CLUSTER_NAME elasticsearch
-ENV ES_AWS_REGION us-east-1
+ENV ES_AWS_REGION ap-southeast-1
 
 EXPOSE 9200 9300
 
@@ -27,6 +27,6 @@ RUN crontab /opt/es.crontab
 
 ADD supervisord.conf /etc/supervisor/conf.d/elasticsearch.conf
 
-ADD run ./run
-RUN chmod +x ./run
-CMD ./run
+ADD run.sh /opt/run.sh
+RUN chmod +x /opt/run.sh
+CMD /opt/run.sh
